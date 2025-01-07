@@ -6,6 +6,16 @@ namespace Assets.Scripts.Objects.Player
 {
     public class TurretHandler : MonoBehaviour
     {
+        private bool _isActive;
 
+        public void Activate()
+        {
+            _isActive = true;
+        }
+
+        public void Deactivate()
+        {
+            _isActive = false;
+        }
     }
 }

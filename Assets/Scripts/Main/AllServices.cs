@@ -10,14 +10,13 @@ namespace Assets.Scripts.Infrastructure
 
     public class AllServices
     {
-
         private static AllServices _instance;
 
         public static AllServices Container => _instance ??= new AllServices();
 
         public void RegisterSingle<TService>(TService service) where TService : IService
         {
-            Implementation<IService>.ServiceInstance = service;
+            Implementation<TService>.ServiceInstance = service;
         }
 
         public TService Single<TService>() where TService : IService

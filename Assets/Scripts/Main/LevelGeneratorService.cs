@@ -1,10 +1,16 @@
+using Assets.Scripts.Infrastructure;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Main
 {
-    public class LevelGenerator : MonoBehaviour
+    public interface ILevelGeneratorService : IService 
+    {
+        public void GenerateLevel();
+    }
+
+    public class LevelGeneratorService : MonoBehaviour, ILevelGeneratorService
     {
         public LevelData LevelData;
 

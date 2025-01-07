@@ -13,9 +13,21 @@ namespace Assets.Scripts.Objects.Player
 
         private IInputService _inputService;
 
+        private bool _isActive = false;
+
+        private void Update()
+        {
+            
+        }
+
         public void Init(IInputService inputService)
         {
             _inputService = inputService;
+        }
+
+        public void Activate()
+        {
+
         }
     }
 }
