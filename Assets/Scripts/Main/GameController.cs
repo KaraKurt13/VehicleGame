@@ -10,16 +10,21 @@ namespace Assets.Scripts.Main
 {
     public class GameController : MonoBehaviour
     {
-        public PlayerController PlayerController;
-
         private GameStateMachine _gameStateMachine;
 
         private AllServices _services;
+
+        private void Update()
+        {
+            Debug.Log(_gameStateMachine.CurrentState);
+            _gameStateMachine?.Update();
+        }
 
         private void Awake()
         {
             RegisterServices();
             _gameStateMachine = new GameStateMachine(_services);
+            _playerControllerService.Init(_services);
         }
 
         #region Services
@@ -29,6 +34,8 @@ namespace Assets.Scripts.Main
         private LevelGeneratorService _levelGeneratorService;
         [SerializeField]
         private UIComponentsService _UIComponentsService;
+        [SerializeField]
+        private PlayerControllerService _playerControllerService;
 
         private void RegisterServices()
         {
@@ -37,6 +44,7 @@ namespace Assets.Scripts.Main
             RegisterCameraService();
             RegisterLevelGeneratorService();
             RegisterUIComponentsService();
+            RegisterPlayerControllerService();
         }
 
         private void RegisterInputService()
@@ -57,6 +65,11 @@ namespace Assets.Scripts.Main
         private void RegisterUIComponentsService()
         {
             _services.RegisterSingle<IUIComponentsService>(_UIComponentsService);
+        }
+
+        private void RegisterPlayerControllerService()
+        {
+            _services.RegisterSingle<IPlayerControllerService>(_playerControllerService);
         }
         #endregion Services
     }
