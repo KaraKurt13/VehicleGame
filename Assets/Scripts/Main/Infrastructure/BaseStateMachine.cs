@@ -38,9 +38,15 @@ namespace Assets.Scripts.Main.Infrastructure
 
         }
 
-        public void Update()
+        public void UpdateState()
         {
             _currentState.Update();
         }
+
+        public void UpdateStatePhysics()
+        {
+            _currentState.PhysicsUpdate();
+        }
+
     }
 }

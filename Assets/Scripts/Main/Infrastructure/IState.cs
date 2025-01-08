@@ -9,5 +9,6 @@ namespace Assets.Scripts.Main.Infrastructure
         void Enter();
         void Exit();
         void Update();
+        void PhysicsUpdate();
     }
 }

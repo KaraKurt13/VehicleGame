@@ -1,3 +1,4 @@
+using Assets.Scripts.Helpers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,12 @@ namespace Assets.Scripts.Objects.Player
 {
     public class CarMovementHandler : MonoBehaviour
     {
-        private float _moveStep = 0.05f;
+        private float _moveStep;
+
+        private void Start()
+        {
+            _moveStep = 4f / TimeHelper.TicksPerSecond;
+        }
 
         public void Move()
         {

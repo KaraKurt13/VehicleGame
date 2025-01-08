@@ -33,5 +33,9 @@ namespace Assets.Scripts.Main.Infrastructure
         public void Update()
         {
         }
+
+        public void PhysicsUpdate()
+        {
+        }
     }
 }

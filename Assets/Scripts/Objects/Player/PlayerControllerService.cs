@@ -30,8 +30,12 @@ namespace Assets.Scripts.Objects.Player
 
         private void Update()
         {
-            Debug.Log(_playerStateMachine.CurrentState);
-            _playerStateMachine?.Update();
+            _playerStateMachine?.UpdateState();
+        }
+
+        private void FixedUpdate()
+        {
+            _playerStateMachine?.UpdateStatePhysics();
         }
 
         public void Init(AllServices _services)

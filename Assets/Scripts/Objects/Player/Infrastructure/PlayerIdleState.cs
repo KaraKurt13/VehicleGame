@@ -18,5 +18,9 @@ namespace Assets.Scripts.Objects.Player.Infrastructure
         {
 
         }
+
+        public void PhysicsUpdate()
+        {
+        }
     }
 }

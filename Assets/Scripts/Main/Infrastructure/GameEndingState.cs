@@ -14,6 +14,10 @@ namespace Assets.Scripts.Main.Infrastructure
         {
         }
 
+        public void PhysicsUpdate()
+        {
+        }
+
         public void Update()
         {
         }

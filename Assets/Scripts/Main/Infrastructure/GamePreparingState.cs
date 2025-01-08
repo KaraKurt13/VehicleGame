@@ -20,6 +20,11 @@ namespace Assets.Scripts.Main.Infrastructure
             _gameStateMachine = stateMachine;
         }
 
+        private void StartGame()
+        {
+            _gameStateMachine.Enter<GameLoopState>();
+        }
+
         public void Enter()
         {
             // Display waiting for start tap interface
@@ -38,9 +43,9 @@ namespace Assets.Scripts.Main.Infrastructure
                 StartGame();
         }
 
-        private void StartGame()
+        public void PhysicsUpdate()
         {
-            _gameStateMachine.Enter<GameLoopState>();
         }
+
     }
 }

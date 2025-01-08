@@ -17,7 +17,7 @@ namespace Assets.Scripts.Main
         private void Update()
         {
             Debug.Log(_gameStateMachine.CurrentState);
-            _gameStateMachine?.Update();
+            _gameStateMachine?.UpdateState();
         }
 
         private void Awake()
