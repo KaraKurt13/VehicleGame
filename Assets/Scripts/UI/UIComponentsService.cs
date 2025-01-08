@@ -1,4 +1,6 @@
 using Assets.Scripts.Infrastructure;
+using Assets.Scripts.Main;
+using Assets.Scripts.Objects.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +11,26 @@ namespace Assets.Scripts.UI
     {
         void DrawTapWaitingScreen();
         void HideTapWaitingScreen();
-        
+        void DrawPlayerPanel();
+        void HidePlayerPanel();
+        void DrawGameResults(GameResultEnum result);
     }
 
     public class UIComponentsService : MonoBehaviour, IUIComponentsService
     {
         [SerializeField]
         private GameObject _tapWaitingScreen;
+
+        [SerializeField]
+        private PlayerPanelComponent _playerPanel;
+
+        [SerializeField]
+        private GameResultsComponent _gameResults;
+
+        private void Update()
+        {
+            
+        }
 
         public void DrawTapWaitingScreen()
         {
@@ -25,6 +40,26 @@ namespace Assets.Scripts.UI
         public void HideTapWaitingScreen()
         {
             _tapWaitingScreen.SetActive(false);
+        }
+
+        public void Init(PlayerStats stats)
+        {
+
+        }
+
+        public void DrawGameResults(GameResultEnum result)
+        {
+            _gameResults.DrawResults(result);
+        }
+
+        public void DrawPlayerPanel()
+        {
+            _playerPanel.Draw();
+        }
+
+        public void HidePlayerPanel()
+        {
+            _playerPanel.Hide();
         }
     }
 }

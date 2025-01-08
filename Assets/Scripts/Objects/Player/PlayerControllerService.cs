@@ -14,6 +14,10 @@ namespace Assets.Scripts.Objects.Player
         void Activate();
 
         void Deactivate();
+
+        bool HasPlayerWon();
+
+        bool HasPlayerLost();
     }
 
     public class PlayerControllerService : MonoBehaviour, IPlayerControllerService
@@ -40,6 +44,7 @@ namespace Assets.Scripts.Objects.Player
 
         public void Init(AllServices _services)
         {
+            Stats = new PlayerStats(100, 10f, _carMovementHandler.Transform);
             _playerStateMachine = new PlayerStateMachine();
             _playerStateMachine.AddState(typeof(PlayerIdleState), new PlayerIdleState());
             _playerStateMachine.AddState(typeof(PlayerActiveState), new PlayerActiveState(_turretHandler, _carMovementHandler));
@@ -54,6 +59,16 @@ namespace Assets.Scripts.Objects.Player
         public void Deactivate()
         {
             _playerStateMachine.Enter<PlayerIdleState>();
+        }
+
+        public bool HasPlayerWon()
+        {
+            return _carMovementHandler.Transform.position.z >= Stats.EndingPoint.z;
+        }
+
+        public bool HasPlayerLost()
+        {
+            return Stats.HealthPoints <= 0;
         }
     }
 }

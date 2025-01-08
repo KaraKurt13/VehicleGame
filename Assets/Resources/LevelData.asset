@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9d9dde614753f4ebb69a17cb54e992, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  Length: 5
+  Length: 2
   EnemiesPerTile: 2
+  EndingPointVector: {x: 0, y: 0, z: 0}

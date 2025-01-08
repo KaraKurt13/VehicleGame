@@ -10,21 +10,29 @@ namespace Assets.Scripts.Main
 {
     public class GameController : MonoBehaviour
     {
+        [SerializeField]
+        private LevelData _levelData;
+
         private GameStateMachine _gameStateMachine;
 
         private AllServices _services;
 
         private void Update()
         {
-            Debug.Log(_gameStateMachine.CurrentState);
             _gameStateMachine?.UpdateState();
+        }
+
+        private void FixedUpdate()
+        {
+            _gameStateMachine?.UpdateStatePhysics();
         }
 
         private void Awake()
         {
             RegisterServices();
-            _gameStateMachine = new GameStateMachine(_services);
             _playerControllerService.Init(_services);
+            _levelGeneratorService.Init(_levelData, _playerControllerService.Stats);
+            _gameStateMachine = new GameStateMachine(_services, this);
         }
 
         #region Services

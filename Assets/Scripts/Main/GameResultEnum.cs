@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Objects.Player
+namespace Assets.Scripts.Main
 {
-    public class TurretHandler : MonoBehaviour
+    public enum GameResultEnum
     {
+        Win,
+        Lose
     }
 }

@@ -17,6 +17,7 @@ namespace Assets.Scripts.Main.Infrastructure
         public GamePreparingState(AllServices services, GameStateMachine stateMachine)
         {
             _inputService = services.Single<IInputService>();
+            _uiComponentsService = services.Single<IUIComponentsService>();
             _gameStateMachine = stateMachine;
         }
 
@@ -27,14 +28,13 @@ namespace Assets.Scripts.Main.Infrastructure
 
         public void Enter()
         {
-            // Display waiting for start tap interface
+            _uiComponentsService.DrawTapWaitingScreen();
         }
 
         public void Exit()
         {
-            // activate player
-            // hide preparing UI
-            // change camera
+            _uiComponentsService.HideTapWaitingScreen();
+            // start camera changing coroutine camera
         }
 
         public void Update()

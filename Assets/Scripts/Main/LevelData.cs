@@ -10,5 +10,7 @@ namespace Assets.Scripts.Main
         public int Length;
 
         public int EnemiesPerTile;
+
+        public Vector3 EndingPointVector;
     }
 }

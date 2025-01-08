@@ -7,18 +7,20 @@ namespace Assets.Scripts.Objects.Player
 {
     public class CarMovementHandler : MonoBehaviour
     {
+        public Transform Transform => transform;
+
         private float _moveStep;
 
         private void Start()
         {
-            _moveStep = 4f / TimeHelper.TicksPerSecond;
+            _moveStep = 20f / TimeHelper.TicksPerSecond;
         }
 
         public void Move()
         {
-            var pos = transform.position;
+            var pos = Transform.position;
             pos.z += _moveStep;
-            transform.position = pos;
+            Transform.position = pos;
         }
 
         private const float _minTargetX = -2.5f, _maxTargetX = 2.5f;

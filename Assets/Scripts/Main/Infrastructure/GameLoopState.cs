@@ -12,26 +12,31 @@ namespace Assets.Scripts.Main.Infrastructure
 
         private GameStateMachine _gameStateMachine;
 
-        public GameLoopState(AllServices services, GameStateMachine stateMachine)
+        private GameController _gameController;
+
+        public GameLoopState(AllServices services, GameStateMachine stateMachine, GameController gameController)
         {
             _playerControllerService = services.Single<IPlayerControllerService>();
             _gameStateMachine = stateMachine;
+            _gameController = gameController;
         }
 
         public void Enter()
         {
             _playerControllerService.Activate();
             // After player tap start car moving, activate turret shot
-            // On reaching the end, show win screen
             // If player dies, show losing screen
         }
 
         public void Exit()
         {
+            _playerControllerService.Deactivate();
         }
 
         public void Update()
         {
+            if (_playerControllerService.HasPlayerWon() || _playerControllerService.HasPlayerLost())
+                _gameStateMachine.Enter<GameEndingState>();
         }
 
         public void PhysicsUpdate()
