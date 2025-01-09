@@ -2,7 +2,6 @@ using Assets.Scripts.Helpers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 namespace Assets.Scripts.Objects.Player
 {
@@ -29,7 +28,7 @@ namespace Assets.Scripts.Objects.Player
             _ticksForSideMove = _maxTicksForSideMove;
         }
 
-        public void MoveTick()
+        public void Tick()
         {
             if (!_isMovingSideways)
             {

@@ -49,7 +49,9 @@ namespace Assets.Scripts.Main
             var levelEndingTilePrefab = _terrainTilePrefab;
             generationPoint.z += generationStep;
             Instantiate(_endingTilePrefab, generationPoint, _endingTilePrefab.transform.rotation, _groundTilesContainer);
+
             _playerStats.EndingPoint = generationPoint;
+            _playerStats.TotalLevelDistance = _playerStats.EndingPoint.z - _playerStats.StartPoint.z;
         }
 
         private void GenerateEnemies()

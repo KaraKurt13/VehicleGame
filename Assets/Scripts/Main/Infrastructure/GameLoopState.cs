@@ -1,5 +1,6 @@
 using Assets.Scripts.Infrastructure;
 using Assets.Scripts.Objects.Player;
+using Assets.Scripts.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace Assets.Scripts.Main.Infrastructure
     {
         private IPlayerControllerService _playerControllerService;
 
+        private IUIComponentsService _uIComponentsService;
+
         private GameStateMachine _gameStateMachine;
 
         private GameController _gameController;
@@ -17,6 +20,7 @@ namespace Assets.Scripts.Main.Infrastructure
         public GameLoopState(AllServices services, GameStateMachine stateMachine, GameController gameController)
         {
             _playerControllerService = services.Single<IPlayerControllerService>();
+            _uIComponentsService = services.Single<IUIComponentsService>();
             _gameStateMachine = stateMachine;
             _gameController = gameController;
         }
@@ -24,13 +28,13 @@ namespace Assets.Scripts.Main.Infrastructure
         public void Enter()
         {
             _playerControllerService.Activate();
-            // After player tap start car moving, activate turret shot
-            // If player dies, show losing screen
+            _uIComponentsService.DrawPlayerPanel();
         }
 
         public void Exit()
         {
             _playerControllerService.Deactivate();
+            _uIComponentsService.HidePlayerPanel();
         }
 
         public void Update()

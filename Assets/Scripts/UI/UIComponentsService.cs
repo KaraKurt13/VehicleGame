@@ -27,11 +27,6 @@ namespace Assets.Scripts.UI
         [SerializeField]
         private GameResultsComponent _gameResults;
 
-        private void Update()
-        {
-            
-        }
-
         public void DrawTapWaitingScreen()
         {
             _tapWaitingScreen.SetActive(true);
@@ -44,7 +39,7 @@ namespace Assets.Scripts.UI
 
         public void Init(PlayerStats stats)
         {
-
+            _playerPanel.Init(stats);
         }
 
         public void DrawGameResults(GameResultEnum result)

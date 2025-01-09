@@ -32,6 +32,7 @@ namespace Assets.Scripts.Main
             RegisterServices();
             _playerControllerService.Init(_services);
             _levelGeneratorService.Init(_levelData, _playerControllerService.Stats);
+            _uIComponentsService.Init(_playerControllerService.Stats);
             _gameStateMachine = new GameStateMachine(_services, this);
         }
 
@@ -41,7 +42,7 @@ namespace Assets.Scripts.Main
         [SerializeField]
         private LevelGeneratorService _levelGeneratorService;
         [SerializeField]
-        private UIComponentsService _UIComponentsService;
+        private UIComponentsService _uIComponentsService;
         [SerializeField]
         private PlayerControllerService _playerControllerService;
 
@@ -72,7 +73,7 @@ namespace Assets.Scripts.Main
 
         private void RegisterUIComponentsService()
         {
-            _services.RegisterSingle<IUIComponentsService>(_UIComponentsService);
+            _services.RegisterSingle<IUIComponentsService>(_uIComponentsService);
         }
 
         private void RegisterPlayerControllerService()
