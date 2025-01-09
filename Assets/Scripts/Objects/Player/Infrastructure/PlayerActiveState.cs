@@ -34,7 +34,7 @@ namespace Assets.Scripts.Objects.Player.Infrastructure
 
         public void PhysicsUpdate()
         {
-            _carMovementHandler.Move();
+            _carMovementHandler.MoveTick();
         }
     }
 }
