@@ -42,13 +42,14 @@ namespace Assets.Scripts.Objects.Player
             _playerStateMachine?.UpdateStatePhysics();
         }
 
-        public void Init(AllServices _services)
+        public void Init(AllServices services)
         {
             Stats = new PlayerStats(100, 10f, _carMovementHandler.Transform);
             _playerStateMachine = new PlayerStateMachine();
             _playerStateMachine.AddState(typeof(PlayerIdleState), new PlayerIdleState());
             _playerStateMachine.AddState(typeof(PlayerActiveState), new PlayerActiveState(_turretHandler, _carMovementHandler));
             _playerStateMachine.Enter<PlayerIdleState>();
+            _turretHandler.Init(services);
         }
 
         public void Activate()

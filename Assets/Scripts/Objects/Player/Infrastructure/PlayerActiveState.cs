@@ -27,9 +27,6 @@ namespace Assets.Scripts.Objects.Player.Infrastructure
 
         public void Update()
         {
-            // Move car
-            // Detect turret movement
-            // Detect fire
         }
 
         public void PhysicsUpdate()

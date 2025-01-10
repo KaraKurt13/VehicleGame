@@ -214,11 +214,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _generationStartPoint: {fileID: 6322772168730830831}
   _groundTilesContainer: {fileID: 200331783}
+  _enemiesContainer: {fileID: 0}
   _terrainTilePrefab: {fileID: 7548027625719114676, guid: 4f8cc97a6b23c7343aabf862bc9217d1,
     type: 3}
   _endingTilePrefab: {fileID: 7548027625719114676, guid: 72fdefaa72bfc2a49b962fb2907e2e47,
     type: 3}
-  _enemyPrefab: {fileID: 0}
+  _enemyPrefab: {fileID: 3213353519335524095, guid: 78fd0f47b9b58ca4987af4e082d344b5,
+    type: 3}
 --- !u!1 &200331782
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +527,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1217183676}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &509999285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 509999286}
+  m_Layer: 0
+  m_Name: EnemiesContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &509999286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509999285}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &632667715
 GameObject:
@@ -2883,13 +2916,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8679651905638620454}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7072302, z: -0.7069834, w: 0}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: -0, y: 1.32, z: 0.164}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5966204094974631985}
-  m_LocalEulerAnglesHint: {x: -89.98, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -180, z: 0}
 --- !u!1 &8679651905638620454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2932,3 +2965,4 @@ SceneRoots:
   - {fileID: 1071439510}
   - {fileID: 2125993468}
   - {fileID: 5966204094974631985}
+  - {fileID: 509999286}

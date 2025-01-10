@@ -16,7 +16,7 @@ namespace Assets.Scripts.Main
         private LevelData _levelData;
 
         [SerializeField]
-        private Transform _generationStartPoint, _groundTilesContainer;
+        private Transform _generationStartPoint, _groundTilesContainer, _enemiesContainer;
 
         [SerializeField]
         private GameObject _terrainTilePrefab, _endingTilePrefab, _enemyPrefab;

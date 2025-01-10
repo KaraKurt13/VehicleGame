@@ -21,7 +21,6 @@ namespace Assets.Scripts.UI
 
         private void Update()
         {
-            Debug.Log(_stats.NormalizedProgress);
             _playerHP.value = _stats.NormalizedHealth;
             _playerProgress.value = _stats.NormalizedProgress;
         }
