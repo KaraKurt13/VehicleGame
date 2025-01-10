@@ -1,4 +1,5 @@
 using Assets.Scripts.Helpers;
+using Assets.Scripts.Objects.Enemies;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,21 +24,17 @@ namespace Assets.Scripts.Objects
 
         private void FixedUpdate()
         {
-            Debug.Log(_direction);
             transform.position += _direction * _speedPerTick;
         }
 
         private void OnBecameInvisible()
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<Enemy>(out var enemy))
-            {
-
-            }
+            Destroy(gameObject);
         }
     }
 }

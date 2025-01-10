@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   Length: 2
-  EnemiesPerTile: 2
+  EnemiesCount: 30
   EndingPointVector: {x: 0, y: 0, z: 0}

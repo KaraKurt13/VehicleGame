@@ -43,7 +43,9 @@ namespace Assets.Scripts.Main
             for (int i = 0; i < tilesCount - 1; i++)
             {
                 generationPoint.z += generationStep;
-                var prefab = Instantiate(_terrainTilePrefab, generationPoint, _terrainTilePrefab.transform.rotation, _groundTilesContainer);
+                var point = generationPoint;
+                var prefab = Instantiate(_terrainTilePrefab, point, _terrainTilePrefab.transform.rotation, _groundTilesContainer);
+                _groundTileVectors.Add(point);
             }
 
             var levelEndingTilePrefab = _terrainTilePrefab;
@@ -54,9 +56,32 @@ namespace Assets.Scripts.Main
             _playerStats.TotalLevelDistance = _playerStats.EndingPoint.z - _playerStats.StartPoint.z;
         }
 
+        private List<Vector3> _groundTileVectors = new();
+
+        private float _spawnRadius = 4f;
+
+        private const float _xSpawnOffset = 3f, _zSpawnOffset = 60f;
+
         private void GenerateEnemies()
         {
-            
+            var enemiesCount = _levelData.EnemiesCount;
+            var tilesCount = _groundTileVectors.Count;
+            var enemiesPerTile = Mathf.CeilToInt(enemiesCount / tilesCount);
+            foreach(var tileCenter in _groundTileVectors)
+            {
+                for (int i = 0; i < enemiesPerTile; i++)
+                {
+                    var offsetX = Random.Range(-_xSpawnOffset, _xSpawnOffset);
+                    var offsetZ = Random.Range(-_zSpawnOffset, _zSpawnOffset);
+                    var spawnPoint = new Vector3(
+                        tileCenter.x +  offsetX,
+                        tileCenter.y,
+                        tileCenter.z + offsetZ);
+                    Instantiate(_enemyPrefab, spawnPoint, _enemyPrefab.transform.rotation, _enemiesContainer);
+                }
+            }
+
+           
         }
     }
 }
