@@ -35,7 +35,6 @@ namespace Assets.Scripts.Objects.Enemies.Infranstructure
         public void Update()
         {
             var newPos = Vector3.MoveTowards(_enemy.Position, _player.CurrentPosition, _moveSpeed);
-            _enemy.transform.LookAt(_player.Transform);
             var direction = _player.Transform.position - _enemy.transform.position;
             var targetRotation = Quaternion.LookRotation(direction);
             _enemy.Move(newPos, targetRotation);
