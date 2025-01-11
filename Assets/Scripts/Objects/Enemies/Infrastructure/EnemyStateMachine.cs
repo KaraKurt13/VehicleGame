@@ -8,7 +8,7 @@ namespace Assets.Scripts.Objects.Enemies.Infranstructure
     {
         public EnemyStateMachine(Enemy enemy, PlayerStats player)
         {
-            AddState(typeof(EnemyIdleState), new EnemyIdleState());
+            AddState(typeof(EnemyIdleState), new EnemyIdleState(enemy));
             AddState(typeof(EnemyChasingState), new EnemyChasingState(enemy, player));
             AddState(typeof(EnemyDyingState), new EnemyDyingState(enemy));
             Enter<EnemyIdleState>();

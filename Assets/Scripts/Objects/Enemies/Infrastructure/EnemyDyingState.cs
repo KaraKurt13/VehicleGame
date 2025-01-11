@@ -1,3 +1,4 @@
+using Assets.Scripts.Helpers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace Assets.Scripts.Objects.Enemies.Infranstructure
         public void Enter()
         {
             _enemy.DisableTriggers();
+            _enemy.Animator.SetTrigger("Death");
+            TicksTillDeath = TimeHelper.SecondsToTicks(1.5f);
         }
 
         public void Exit()

@@ -6,6 +6,11 @@ namespace Assets.Scripts.Objects.Enemies.Infranstructure
 {
     public class EnemyIdleState : IEnemyState
     {
+        private Enemy _enemy;
+        public EnemyIdleState(Enemy enemy)
+        {
+            _enemy = enemy;
+        }
         public void Enter()
         {
         }
@@ -20,6 +25,7 @@ namespace Assets.Scripts.Objects.Enemies.Infranstructure
 
         public void Update()
         {
+            _enemy.IsMoving = false;
         }
     }
 }

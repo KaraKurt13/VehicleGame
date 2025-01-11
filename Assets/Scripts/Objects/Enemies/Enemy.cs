@@ -16,6 +16,8 @@ namespace Assets.Scripts.Objects.Enemies
 
         public Animator Animator;
 
+        public bool IsMoving = false;
+
         private IPlayerControllerService _playerControllerService;
 
         [SerializeField]
@@ -24,6 +26,8 @@ namespace Assets.Scripts.Objects.Enemies
         [SerializeField]
         private SphereCollider _detectionTrigger;
 
+        [SerializeField]
+        private Rigidbody _rigidBody;
 
         public Vector3 Position
         {
@@ -43,6 +47,9 @@ namespace Assets.Scripts.Objects.Enemies
 
         public void Move(Vector3 pos)
         {
+            IsMoving = true;
+            var lookAngle = Quaternion.LookRotation(pos);
+            //_rigidBody.Move(pos, lookAngle);
             transform.position = pos;
         }
 
@@ -66,6 +73,7 @@ namespace Assets.Scripts.Objects.Enemies
 
         private void Update()
         {
+            Animator.SetBool("IsMoving", IsMoving);
             _stateMachine.UpdateState();
         }
 
