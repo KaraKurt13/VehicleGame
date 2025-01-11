@@ -1,5 +1,4 @@
 using Assets.Scripts.Infrastructure;
-using Assets.Scripts.Object.Infrastructure;
 using Assets.Scripts.Objects.Enemies.Infranstructure;
 using Assets.Scripts.Objects.Player;
 using Assets.Scripts.UI;
