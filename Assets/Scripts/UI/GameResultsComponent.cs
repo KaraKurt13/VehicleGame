@@ -19,7 +19,7 @@ namespace Assets.Scripts.UI
                     _winScreen.SetActive(true);
                     break;
                 case GameResultEnum.Lose:
-                    _winScreen.SetActive(false);
+                    _loseScreen.SetActive(true);
                     break;
             }
 

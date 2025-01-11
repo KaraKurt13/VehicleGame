@@ -34,7 +34,8 @@ namespace Assets.Scripts.Objects
 
         private void OnTriggerEnter(Collider other)
         {
-            Destroy(gameObject);
+            if (other.tag == "Enemy")
+                Destroy(gameObject);
         }
     }
 }

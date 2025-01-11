@@ -1,5 +1,6 @@
 using Assets.Scripts.Infrastructure;
 using Assets.Scripts.Main;
+using Assets.Scripts.Objects.Enemies;
 using Assets.Scripts.Objects.Player.Infrastructure;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace Assets.Scripts.Objects.Player
         bool HasPlayerWon();
 
         bool HasPlayerLost();
+
+        void TakeDamage(float damage);
     }
 
     public class PlayerControllerService : MonoBehaviour, IPlayerControllerService
@@ -44,7 +47,7 @@ namespace Assets.Scripts.Objects.Player
 
         public void Init(AllServices services)
         {
-            Stats = new PlayerStats(100, 10f, _carMovementHandler.Transform);
+            Stats = new PlayerStats(100f, 10f, _carMovementHandler.Transform);
             _playerStateMachine = new PlayerStateMachine();
             _playerStateMachine.AddState(typeof(PlayerIdleState), new PlayerIdleState());
             _playerStateMachine.AddState(typeof(PlayerActiveState), new PlayerActiveState(_turretHandler, _carMovementHandler));
@@ -60,6 +63,11 @@ namespace Assets.Scripts.Objects.Player
         public void Deactivate()
         {
             _playerStateMachine.Enter<PlayerIdleState>();
+        }
+
+        public void TakeDamage(float damage)
+        {
+            Stats.HealthPoints -= damage;
         }
 
         public bool HasPlayerWon()

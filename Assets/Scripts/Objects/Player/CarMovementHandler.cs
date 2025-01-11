@@ -9,7 +9,7 @@ namespace Assets.Scripts.Objects.Player
     {
         public Transform Transform => transform;
 
-        private float _moveSpeed, _sideMoveSpeed;
+        private float _moveSpeed;
 
         private bool _isMovingSideways = false;
 
@@ -22,8 +22,7 @@ namespace Assets.Scripts.Objects.Player
 
         private void Start()
         {
-            _moveSpeed = 10f / TimeHelper.TicksPerSecond;
-            _sideMoveSpeed = 1f / TimeHelper.TicksPerSecond;
+            _moveSpeed = 5f / TimeHelper.TicksPerSecond;
             _maxTicksForSideMove = TimeHelper.SecondsToTicks(3);
             _ticksForSideMove = _maxTicksForSideMove;
         }

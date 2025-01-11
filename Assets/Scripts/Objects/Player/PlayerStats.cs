@@ -7,15 +7,15 @@ namespace Assets.Scripts.Objects.Player
 {
     public class PlayerStats
     {
-        public int MaxHealth { get; }
+        public float MaxHealth { get; }
 
-        public int HealthPoints { get; set; }
+        public float HealthPoints { get; set; }
 
         public float NormalizedHealth
         {
             get
             {
-                return (MaxHealth / HealthPoints);
+                return (HealthPoints / MaxHealth);
             }
         }
 
@@ -38,21 +38,21 @@ namespace Assets.Scripts.Objects.Player
         {
             get
             {
-                return _carTransform.position;
+                return Transform.position;
             }
         }
 
         public float TurretDamage { get; }
 
-        private Transform _carTransform;
+        public Transform Transform;
 
-        public PlayerStats(int maxHealth, float turretDamage, Transform carTransform)
+        public PlayerStats(float maxHealth, float turretDamage, Transform carTransform)
         {
             MaxHealth = maxHealth;
             HealthPoints = MaxHealth;
             TurretDamage = turretDamage;
-            _carTransform = carTransform;
-            StartPoint = _carTransform.position;
+            Transform = carTransform;
+            StartPoint = Transform.position;
         }
     }
 }

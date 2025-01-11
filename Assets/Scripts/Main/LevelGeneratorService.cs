@@ -58,8 +58,6 @@ namespace Assets.Scripts.Main
 
         private List<Vector3> _groundTileVectors = new();
 
-        private float _spawnRadius = 4f;
-
         private const float _xSpawnOffset = 3f, _zSpawnOffset = 60f;
 
         private void GenerateEnemies()
