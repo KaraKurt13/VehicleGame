@@ -45,12 +45,10 @@ namespace Assets.Scripts.Objects.Enemies
             _stateMachine = new EnemyStateMachine(this, _playerControllerService.Stats);
         }
 
-        public void Move(Vector3 pos)
+        public void Move(Vector3 pos, Quaternion rotation)
         {
             IsMoving = true;
-            var lookAngle = Quaternion.LookRotation(pos);
-            //_rigidBody.Move(pos, lookAngle);
-            transform.position = pos;
+            transform.SetPositionAndRotation(pos, rotation);
         }
 
         public void TakeDamage(float damage)
