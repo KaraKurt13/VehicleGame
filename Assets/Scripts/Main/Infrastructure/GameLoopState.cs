@@ -13,6 +13,8 @@ namespace Assets.Scripts.Main.Infrastructure
 
         private IUIComponentsService _uIComponentsService;
 
+        private ICameraService _cameraService;
+
         private GameStateMachine _gameStateMachine;
 
         private GameController _gameController;
@@ -21,12 +23,14 @@ namespace Assets.Scripts.Main.Infrastructure
         {
             _playerControllerService = services.Single<IPlayerControllerService>();
             _uIComponentsService = services.Single<IUIComponentsService>();
+            _cameraService = services.Single<ICameraService>();
             _gameStateMachine = stateMachine;
             _gameController = gameController;
         }
 
         public void Enter()
         {
+            _cameraService.ChangeCameraState(CameraStateEnum.Following, false);
             _playerControllerService.Activate();
             _uIComponentsService.DrawPlayerPanel();
         }
