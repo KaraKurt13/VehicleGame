@@ -13,10 +13,16 @@ namespace Assets.Scripts.Main.Infrastructure
 
         private IUIComponentsService _uIComponentsService;
 
-        public GameEndingState(AllServices services)
+        private IInputService _inputService;
+
+        private GameController _gameController;
+
+        public GameEndingState(AllServices services, GameController gameController)
         {
             _playerControllerService = services.Single<IPlayerControllerService>();
             _uIComponentsService = services.Single<IUIComponentsService>();
+            _inputService = services.Single<IInputService>();
+            _gameController = gameController;
         }
 
         public void Enter()
@@ -36,6 +42,8 @@ namespace Assets.Scripts.Main.Infrastructure
 
         public void Update()
         {
+            if (_inputService.IsTouch())
+                _gameController.ResetGame();
         }
     }
 }

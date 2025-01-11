@@ -36,6 +36,15 @@ namespace Assets.Scripts.Main
             _gameStateMachine = new GameStateMachine(_services, this);
         }
 
+        public void ResetGame()
+        {
+            _playerControllerService.ResetPlayer();
+            _uIComponentsService.ResetUI();
+            _cameraService.ChangeCameraState(CameraStateEnum.SideView, true);
+            _levelGeneratorService.ResetLevel();
+            _gameStateMachine.Enter<GamePreparingState>();
+        }
+
         #region Services
         [SerializeField]
         private CameraService _cameraService;

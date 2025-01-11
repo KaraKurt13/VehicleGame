@@ -79,5 +79,12 @@ namespace Assets.Scripts.Objects.Player
         {
             return Stats.HealthPoints <= 0;
         }
+
+        public void ResetPlayer()
+        {
+            Stats.HealthPoints = 100f;
+            _turretHandler.ResetTurret();
+            _carMovementHandler.ResetCar(Stats.StartPoint);
+        }
     }
 }

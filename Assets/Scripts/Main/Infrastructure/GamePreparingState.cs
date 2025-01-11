@@ -34,7 +34,6 @@ namespace Assets.Scripts.Main.Infrastructure
         public void Exit()
         {
             _uiComponentsService.HideTapWaitingScreen();
-            // start camera changing coroutine camera
         }
 
         public void Update()

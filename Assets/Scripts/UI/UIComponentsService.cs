@@ -56,5 +56,12 @@ namespace Assets.Scripts.UI
         {
             _playerPanel.Hide();
         }
+
+        public void ResetUI()
+        {
+            _playerPanel.Hide();
+            _gameResults.Hide();
+            _tapWaitingScreen.SetActive(false);
+        }
     }
 }

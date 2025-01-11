@@ -39,10 +39,13 @@ namespace Assets.Scripts.Objects.Enemies
 
         private EnemyStateMachine _stateMachine;
 
-        private void Start()
+        private Vector3 _initialPosition;
+
+        private void Awake()
         {
             _playerControllerService = AllServices.Container.Single<IPlayerControllerService>();
             _stateMachine = new EnemyStateMachine(this, _playerControllerService.Stats);
+            _initialPosition = transform.position;
         }
 
         public void Move(Vector3 pos, Quaternion rotation)
@@ -66,7 +69,16 @@ namespace Assets.Scripts.Objects.Enemies
 
         public void Die()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+        }
+
+        public void ResetEnemy()
+        {
+            transform.position = _initialPosition;
+            transform.rotation = Quaternion.identity;
+            _stateMachine.Enter<EnemyIdleState>();
+            IsMoving = false;
+            gameObject.SetActive(true);
         }
 
         private void Update()

@@ -31,6 +31,12 @@ namespace Assets.Scripts.Objects.Player
             FireTick();
         }
 
+        public void ResetTurret()
+        {
+            transform.localRotation = Quaternion.Euler(-90f, -180f, 0);
+            _ticksTillFire = _fireInterval;
+        }
+
         private void UpdateRotation()
         {
             if (_input.IsTouchHeld())

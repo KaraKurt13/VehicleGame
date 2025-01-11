@@ -12,7 +12,7 @@ namespace Assets.Scripts.Main.Infrastructure
             AddState(typeof(GameEnterState), new GameEnterState(services, this));
             AddState(typeof(GamePreparingState), new GamePreparingState(services, this));
             AddState(typeof(GameLoopState), new GameLoopState(services, this, gameController));
-            AddState(typeof(GameEndingState), new GameEndingState(services));
+            AddState(typeof(GameEndingState), new GameEndingState(services, gameController));
             Enter<GameEnterState>();
         }
     }

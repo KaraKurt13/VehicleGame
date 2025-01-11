@@ -1,4 +1,5 @@
 using Assets.Scripts.Infrastructure;
+using Assets.Scripts.Objects.Enemies;
 using Assets.Scripts.Objects.Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Assets.Scripts.Main
     public class LevelGeneratorService : MonoBehaviour, ILevelGeneratorService
     {
         private LevelData _levelData;
+
+        private List<Enemy> _enemies;
 
         [SerializeField]
         private Transform _generationStartPoint, _groundTilesContainer, _enemiesContainer;
@@ -31,6 +34,14 @@ namespace Assets.Scripts.Main
         {
             GenerateTerrain();
             GenerateEnemies();
+        }
+
+        public void ResetLevel()
+        {
+            foreach (var enemy in _enemies)
+            {
+                enemy.ResetEnemy();
+            }
         }
 
         private PlayerStats _playerStats;
@@ -65,6 +76,7 @@ namespace Assets.Scripts.Main
             var enemiesCount = _levelData.EnemiesCount;
             var tilesCount = _groundTileVectors.Count;
             var enemiesPerTile = Mathf.CeilToInt(enemiesCount / tilesCount);
+            _enemies = new();
             foreach(var tileCenter in _groundTileVectors)
             {
                 for (int i = 0; i < enemiesPerTile; i++)
@@ -75,11 +87,10 @@ namespace Assets.Scripts.Main
                         tileCenter.x +  offsetX,
                         tileCenter.y,
                         tileCenter.z + offsetZ);
-                    Instantiate(_enemyPrefab, spawnPoint, _enemyPrefab.transform.rotation, _enemiesContainer);
+                    var enemy = Instantiate(_enemyPrefab, spawnPoint, _enemyPrefab.transform.rotation, _enemiesContainer).GetComponent<Enemy>();
+                    _enemies.Add(enemy);
                 }
             }
-
-           
         }
     }
 }

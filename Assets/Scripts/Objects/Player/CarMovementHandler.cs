@@ -19,7 +19,6 @@ namespace Assets.Scripts.Objects.Player
 
         private const float _minTargetX = -2.5f, _maxTargetX = 2.5f;
 
-
         private void Start()
         {
             _moveSpeed = 5f / TimeHelper.TicksPerSecond;
@@ -42,6 +41,14 @@ namespace Assets.Scripts.Objects.Player
             }
 
             Move();
+        }
+
+        public void ResetCar(Vector3 startPos)
+        {
+            transform.position = startPos;
+            _targetX = 0f;
+            _ticksForSideMove = _maxTicksForSideMove;
+            _isMovingSideways = false;
         }
 
         private void Move()
