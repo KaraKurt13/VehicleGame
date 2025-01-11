@@ -101,6 +101,8 @@ namespace Assets.Scripts.Objects.Enemies
             HealthPoints = MaxHealth;
             EnemyPanel.Hide();
             gameObject.SetActive(true);
+            _damageTrigger.enabled = true;
+            _detectionTrigger.enabled = true;
         }
 
         private void Update()
