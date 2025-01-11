@@ -18,6 +18,7 @@ namespace Assets.Scripts.Objects.Enemies.Infranstructure
         {
             _enemy.DisableTriggers();
             _enemy.Animator.SetTrigger("Death");
+            _enemy.EnemyPanel.Hide();
             TicksTillDeath = TimeHelper.SecondsToTicks(1.5f);
         }
 

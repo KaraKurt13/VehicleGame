@@ -2,6 +2,7 @@ using Assets.Scripts.Infrastructure;
 using Assets.Scripts.Object.Infrastructure;
 using Assets.Scripts.Objects.Enemies.Infranstructure;
 using Assets.Scripts.Objects.Player;
+using Assets.Scripts.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,25 @@ namespace Assets.Scripts.Objects.Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        public float HealthPoints { get; private set; } = 10f;
+        public float HealthPoints { get; private set; }
+
+        public float NormalizedHealthPoints
+        {
+            get
+            {
+                return HealthPoints / MaxHealth;
+            }
+        }
+
+        public float MaxHealth { get; } = 10f;
 
         public bool AttackIsReady { get; private set; } = true;
 
         public Animator Animator;
 
         public bool IsMoving = false;
+
+        public EnemyPanelComponent EnemyPanel;
 
         private IPlayerControllerService _playerControllerService;
 
@@ -28,6 +41,9 @@ namespace Assets.Scripts.Objects.Enemies
 
         [SerializeField]
         private Rigidbody _rigidBody;
+
+        [SerializeField]
+        private Transform _model;
 
         public Vector3 Position
         {
@@ -46,17 +62,22 @@ namespace Assets.Scripts.Objects.Enemies
             _playerControllerService = AllServices.Container.Single<IPlayerControllerService>();
             _stateMachine = new EnemyStateMachine(this, _playerControllerService.Stats);
             _initialPosition = transform.position;
+            HealthPoints = MaxHealth;
         }
 
         public void Move(Vector3 pos, Quaternion rotation)
         {
             IsMoving = true;
-            transform.SetPositionAndRotation(pos, rotation);
+            transform.position = pos;
+            _model.localRotation = rotation;
         }
 
         public void TakeDamage(float damage)
         {
             HealthPoints -= damage;
+            EnemyPanel.UpdateHealthBarValue(NormalizedHealthPoints);
+            EnemyPanel.Draw();
+
             if (HealthPoints <= 0)
                 _stateMachine.Enter<EnemyDyingState>();
         }
@@ -78,6 +99,8 @@ namespace Assets.Scripts.Objects.Enemies
             transform.rotation = Quaternion.identity;
             _stateMachine.Enter<EnemyIdleState>();
             IsMoving = false;
+            HealthPoints = MaxHealth;
+            EnemyPanel.Hide();
             gameObject.SetActive(true);
         }
 
