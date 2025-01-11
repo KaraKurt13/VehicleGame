@@ -85,10 +85,7 @@ namespace Assets.Scripts.Objects.Enemies
             if (other.CompareTag("Projectile"))
                 TakeDamage(5);
             if (other.CompareTag("Player") && other.gameObject.layer == LayerMask.NameToLayer("DetectionTrigger"))
-            {
                 _stateMachine.Enter<EnemyChasingState>();
-                Debug.Log("Player detected!");
-            }
 
             if (other.CompareTag("Player") && other.gameObject.layer == LayerMask.NameToLayer("DamageTrigger"))
                 AttackPlayer();
@@ -99,7 +96,6 @@ namespace Assets.Scripts.Objects.Enemies
 
         private void AttackPlayer()
         {
-            Debug.Log("Attack!");
             _playerControllerService.TakeDamage(_damage);
             _stateMachine.Enter<EnemyDyingState>();
         }
