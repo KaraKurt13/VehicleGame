@@ -95,12 +95,15 @@ namespace Assets.Scripts.Objects.Enemies
         public void ResetEnemy()
         {
             transform.position = _initialPosition;
-            transform.rotation = Quaternion.identity;
+            _model.localRotation = Quaternion.identity;
             _stateMachine.Enter<EnemyIdleState>();
             IsMoving = false;
             HealthPoints = MaxHealth;
             EnemyPanel.Hide();
             gameObject.SetActive(true);
+            Animator.ResetTrigger("Death");
+            Animator.StopPlayback();
+            Animator.Play("Idle", 0, 0f);
             _damageTrigger.enabled = true;
             _detectionTrigger.enabled = true;
         }

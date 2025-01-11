@@ -47,7 +47,7 @@ namespace Assets.Scripts.Objects.Player
 
         public void Init(AllServices services)
         {
-            Stats = new PlayerStats(100f, 10f, _carMovementHandler.Transform);
+            Stats = new PlayerStats(100f, 5f, _carMovementHandler.Transform);
             _playerStateMachine = new PlayerStateMachine();
             _playerStateMachine.AddState(typeof(PlayerIdleState), new PlayerIdleState());
             _playerStateMachine.AddState(typeof(PlayerActiveState), new PlayerActiveState(_turretHandler, _carMovementHandler));
@@ -82,7 +82,7 @@ namespace Assets.Scripts.Objects.Player
 
         public void ResetPlayer()
         {
-            Stats.HealthPoints = 100f;
+            Stats.HealthPoints = Stats.MaxHealth;
             _turretHandler.ResetTurret();
             _carMovementHandler.ResetCar(Stats.StartPoint);
         }
